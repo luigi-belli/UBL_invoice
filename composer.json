@@ -1,5 +1,5 @@
 {
-    "name": "cleverit/ubl_invoice",
+    "name": "luigi-belli/ubl_invoice",
     "description": "A PHP wrapper for UBL invoices",
     "keywords": [
         "ubl", "invoice", "ublinvoice", "cleverit", "clever invoice", "electronic invoice", "xml", "xml invoice"
@@ -7,6 +7,12 @@
     "homepage": "https://github.com/CleverIT/UBL_invoice",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Luigi Belli | Cu.be Solutions",
+            "email": "luigi.belli@cu.be",
+            "homepage": "http://www.cu.be",
+            "role": "Developer"
+        },
         {
             "name": "Bram van Eijk | CleverIT",
             "email": "bram@cleverit.nl",
