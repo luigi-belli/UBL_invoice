@@ -15,6 +15,7 @@ use Sabre\Xml\XmlSerializable;
 class InvoiceLine implements XmlSerializable {
     private $id;
     private $invoicedQuantity;
+    private $lineExtensionAmount;
 
     /**
      * @var TaxTotal
@@ -59,6 +60,22 @@ class InvoiceLine implements XmlSerializable {
      */
     public function setInvoicedQuantity($invoicedQuantity) {
         $this->invoicedQuantity = $invoicedQuantity;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLineExtensionAmount() {
+        return $this->lineExtensionAmount;
+    }
+
+    /**
+     * @param mixed $lineExtensionAmount
+     * @return InvoiceLine
+     */
+    public function setLineExtensionAmount($lineExtensionAmount) {
+        $this->lineExtensionAmount = $lineExtensionAmount;
         return $this;
     }
 
@@ -121,6 +138,13 @@ class InvoiceLine implements XmlSerializable {
             [
                 'name' => Schema::CBC . 'InvoicedQuantity',
                 'value' => $this->invoicedQuantity
+            ],
+            [
+                'name' => Schema::CBC . 'LineExtensionAmount',
+                'value' => number_format($this->lineExtensionAmount, 2, '.', ''),
+                'attributes' => [
+                    'currencyID' => Generator::$currencyID
+                ]
             ],
             Schema::CAC . 'Item' => $this->item,
         ]);
