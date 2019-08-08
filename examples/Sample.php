@@ -70,7 +70,7 @@ $TaxScheme->setId(0);
 $taxCategory = new TaxCategory();
 $taxCategory->setId(0);
 $taxCategory->setName('TVA20');
-$taxCategory->setPercent(.2);
+$taxCategory->setPercent(20);
 $taxCategory->setTaxScheme($TaxScheme);
 
 // taxes
