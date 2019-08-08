@@ -16,7 +16,7 @@ class InvoiceLine implements XmlSerializable {
     private $id;
     private $invoicedQuantity;
     private $lineExtensionAmount;
-    private $unitCode = 'MON';
+
     /**
      * @var TaxTotal
      */
@@ -153,10 +153,7 @@ class InvoiceLine implements XmlSerializable {
             Schema::CBC . 'ID' => $this->id,
             [
                 'name' => Schema::CBC . 'InvoicedQuantity',
-                'value' => $this->invoicedQuantity,
-                'attributes' => [
-                    'unitCode' => $this->unitCode
-                ]
+                'value' => $this->invoicedQuantity
             ],
             [
                 'name' => Schema::CBC . 'LineExtensionAmount',
