@@ -14,7 +14,7 @@ use Sabre\Xml\XmlSerializable;
 
 class Address implements XmlSerializable{
     private $streetName;
-    private $buildingNumber;
+    private $additionalStreetName;
     private $cityName;
     private $postalZone;
     /**
@@ -41,16 +41,16 @@ class Address implements XmlSerializable{
     /**
      * @return mixed
      */
-    public function getBuildingNumber() {
-        return $this->buildingNumber;
+    public function getAdditionalStreetName() {
+        return $this->additionalStreetName;
     }
 
     /**
-     * @param mixed $buildingNumber
+     * @param mixed $additionalStreetName
      * @return Address
      */
-    public function setBuildingNumber($buildingNumber) {
-        $this->buildingNumber = $buildingNumber;
+    public function setAdditionalStreetName($additionalStreetName) {
+        $this->additionalStreetName = $additionalStreetName;
         return $this;
     }
 
@@ -110,16 +110,15 @@ class Address implements XmlSerializable{
      * @return void
      */
     function xmlSerialize(Writer $writer) {
-        // TODO: Implement xmlSerialize() method.
-        $cbc = '{urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2}';
-        $cac = '{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2}';
-
-        $writer->write([
+        $data = [
             Schema::CBC.'StreetName' => $this->streetName,
-            Schema::CBC.'BuildingNumber' => $this->buildingNumber,
             Schema::CBC.'CityName' => $this->cityName,
             Schema::CBC.'PostalZone' => $this->postalZone,
             Schema::CAC.'Country' => $this->country,
-        ]);
+        ];
+        if (!empty($this->additionalStreetName)) {
+            $data[Schema::CBC.'AdditionalStreetName'] = $this->additionalStreetName;
+        }
+        $writer->write($data);
     }
 }

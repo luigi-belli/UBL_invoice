@@ -15,6 +15,8 @@ use Sabre\Xml\XmlSerializable;
 class Country implements  XmlSerializable {
     private $identificationCode;
 
+    private $name;
+
     /**
      * @return mixed
      */
@@ -31,7 +33,21 @@ class Country implements  XmlSerializable {
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getName() {
+        return $this->name;
+    }
 
+    /**
+     * @param mixed $name
+     * @return Country
+     */
+    public function setName($name) {
+        $this->name = $name;
+        return $this;
+    }
 
     /**
      * The xmlSerialize method is called during xml writing.
@@ -42,6 +58,7 @@ class Country implements  XmlSerializable {
     function xmlSerialize(Writer $writer) {
         $writer->write([
             Schema::CBC.'IdentificationCode' => $this->identificationCode,
+            Schema::CBC.'Name' => $this->name,
         ]);
     }
 

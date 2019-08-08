@@ -13,27 +13,10 @@ use Sabre\Xml\Writer;
 use Sabre\Xml\XmlSerializable;
 
 class LegalMonetaryTotal implements XmlSerializable {
-    private $lineExtensionAmount;
     private $taxExclusiveAmount;
     private $taxInclusiveAmount;
     private $allowanceTotalAmount = 0;
     private $payableAmount;
-
-    /**
-     * @return mixed
-     */
-    public function getLineExtensionAmount() {
-        return $this->lineExtensionAmount;
-    }
-
-    /**
-     * @param mixed $lineExtensionAmount
-     * @return LegalMonetaryTotal
-     */
-    public function setLineExtensionAmount($lineExtensionAmount) {
-        $this->lineExtensionAmount = $lineExtensionAmount;
-        return $this;
-    }
 
     /**
      * @return mixed
@@ -109,14 +92,6 @@ class LegalMonetaryTotal implements XmlSerializable {
     function xmlSerialize(Writer $writer) {
         // TODO: Implement xmlSerialize() method.
         $writer->write([
-            [
-                'name' => Schema::CBC . 'LineExtensionAmount',
-                'value' => number_format($this->lineExtensionAmount, 2, '.', ''),
-                'attributes' => [
-                    'currencyID' => Generator::$currencyID
-                ]
-
-            ],
             [
                 'name' => Schema::CBC . 'TaxExclusiveAmount',
                 'value' => number_format($this->taxExclusiveAmount, 2, '.', ''),

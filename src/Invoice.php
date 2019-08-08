@@ -187,7 +187,7 @@ class Invoice implements XmlSerializable{
     }
 
     /**
-     * @param \DateTime $issueDate
+     * @param \DateTimeInterface $issueDate
      * @return Invoice
      */
     public function setIssueDate($issueDate) {

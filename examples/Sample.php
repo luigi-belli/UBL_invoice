@@ -27,7 +27,7 @@ $legalMonetaryTotal = new LegalMonetaryTotal();
 // adress
 $caddress = new Address();
 $caddress->setStreetName('Résidence du chateau');
-$caddress->setBuildingNumber(5);
+$caddress->setAdditionalStreetName(5);
 $caddress->setCityName('Castle Land');
 $caddress->setPostalZone('38760');
 $country = new Country();

@@ -29,7 +29,7 @@ class InvoiceTest extends TestCase
         $supplierAddress = (new \CleverIt\UBL\Invoice\Address())
             ->setCityName("Eindhoven")
             ->setStreetName("Keizersgracht")
-            ->setBuildingNumber("15")
+            ->setAdditionalStreetName("15")
             ->setPostalZone("5600 AC")
             ->setCountry((new \CleverIt\UBL\Invoice\Country())->setIdentificationCode("NL"));
 

@@ -48,22 +48,6 @@ class Price implements XmlSerializable {
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUnitCode() {
-        return $this->unitCode;
-    }
-
-    /**
-     * @param mixed $unitCode
-     * @return Price
-     */
-    public function setUnitCode($unitCode) {
-        $this->unitCode = $unitCode;
-        return $this;
-    }
-
 
 
     /**
@@ -73,18 +57,19 @@ class Price implements XmlSerializable {
      * @return void
      */
     function xmlSerialize(Writer $writer) {
-        $writer->write([
-            [
-                'name' => Schema::CBC.'PriceAmount',
-                'value' => $this->priceAmount,
-                'attributes' => [
-                    'currencyID' => Generator::$currencyID
-                ]
-            ],
-            [
+        $data = [            [
+            'name' => Schema::CBC.'PriceAmount',
+            'value' => $this->priceAmount,
+            'attributes' => [
+                'currencyID' => Generator::$currencyID
+            ]
+        ]];
+        if (!empty($this->baseQuantity)) {
+            $data[] = [
                 'name' => Schema::CBC.'BaseQuantity',
                 'value' => $this->baseQuantity
-            ]
-        ]);
+            ];
+        }
+        $writer->write($data);
     }
 }
