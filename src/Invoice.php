@@ -106,7 +106,7 @@ class Invoice implements XmlSerializable{
 
         $writer->write([
             Schema::CBC . 'UBLVersionID' => $this->UBLVersionID,
-            Schema::CBC . 'CustomizationID' => 'OIOUBL-2.01',
+            Schema::CBC . 'CustomizationID' => 'urn:oasis:names:specification:ubl:xpath:Invoice-2.0:sbs-1.0-draft',
             Schema::CBC . 'ID' => $this->id,
             Schema::CBC . 'CopyIndicator' => $this->copyIndicator ? 'true' : 'false',
             Schema::CBC . 'IssueDate' => $this->issueDate->format('Y-m-d'),
