@@ -13,7 +13,7 @@ use Sabre\Xml\Writer;
 use Sabre\Xml\XmlSerializable;
 
 class TaxScheme implements XmlSerializable {
-    private $id;
+    private $id = 'VAT';
 
     /**
      * @return mixed
