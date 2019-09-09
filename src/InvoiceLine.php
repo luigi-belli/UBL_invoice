@@ -16,6 +16,12 @@ class InvoiceLine implements XmlSerializable {
     private $id;
     private $invoicedQuantity;
     private $lineExtensionAmount;
+    private $accountingCostCode;
+
+    /**
+     * @var AllowanceCharge[]
+     */
+    private $allowanceCharges;
 
     /**
      * @var TaxTotal
@@ -128,6 +134,41 @@ class InvoiceLine implements XmlSerializable {
     }
 
     /**
+     * @return AllowanceCharge[]
+     */
+    public function getAllowanceCharges() {
+        return $this->allowanceCharges;
+    }
+
+    /**
+     * @param AllowanceCharge[] $allowanceCharges
+     * @return InvoiceLine
+     */
+    public function setAllowanceCharges($allowanceCharges) {
+        $this->allowanceCharges = $allowanceCharges;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAccountingCostCode()
+    {
+        return $this->accountingCostCode;
+    }
+
+    /**
+     * @param mixed $accountingCostCode
+     * @return InvoiceLine
+     */
+    public function setAccountingCostCode($accountingCostCode)
+    {
+        $this->accountingCostCode = $accountingCostCode;
+
+        return $this;
+    }
+
+    /**
      * The xmlSerialize method is called during xml writing.
      * @param Writer $writer
      * @return void
@@ -148,6 +189,22 @@ class InvoiceLine implements XmlSerializable {
             ],
             Schema::CAC . 'Item' => $this->item,
         ]);
+
+        if (!empty($this->accountingCostCode)) {
+            $writer->write(
+                [
+                    Schema::CBC . 'AccountingCostCode' => $this->accountingCostCode
+                ]
+            );
+        }
+
+        if ($this->allowanceCharges != null) {
+            foreach ($this->allowanceCharges as $allowanceCharge) {
+                $writer->write([
+                    Schema::CAC . 'AllowanceCharge' => $allowanceCharge
+                ]);
+            }
+        }
 
         if (!empty($this->taxTotal)) {
             $writer->write(
